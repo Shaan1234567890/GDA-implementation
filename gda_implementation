@@ -1,0 +1,43 @@
+class Gaussian_discriminant_analysis(object):
+    def __init__(self,x,y):
+        import numpy as np
+        self.mean0 = [0*len(x[0])]
+        self.mean1 = [0*len(x[0])]
+        self.x = np.array(x)
+        self.y = np.array(y)
+        self.y0 = 0
+        self.y1 = 0
+    def check(self):
+        if np.linalg.det(np.cov(x)) == 0:
+            raise TypeError
+        else:
+            print("It's valid")
+    def calculations(self):
+        for i,nums in enumerate(self.x):
+            nums = np.array(nums)
+            if self.y[i] == 0:
+                if i>0:
+                    self.mean0 += nums
+                else:
+                    self.mean0 = nums
+            else:
+                if i>0:
+                    self.mean1 += nums
+                else:
+                    self.mean1 = nums
+        for nums in y:
+            if nums == 0:
+                self.y0 += 1
+            else:
+                self.y1 += 1
+        self.mean0 = self.mean0 / y0
+        self.mean1 = self.mean1 / y1
+    def get_means(self):
+        return self.means
+    def get_prediction(self, x_new):
+        pdf0 = 1/(((2*np.pi)**self.x.ndim/2)*np.sqrt(np.linalg.det(np.cov(self.x)))) * np.exp(-1/2 * np.transpose((x_new - self.mean0)) * np.linalg.inv(np.cov(self.x)) * (x_new - self.mean0)) * (self.y0 / len(self.x))
+        pdf1 = 1/(((2*np.pi)**self.x.ndim/2)*np.sqrt(np.linalg.det(np.cov(sel.x)))) * np.exp(-1/2 * np.transpose((x_new - self.mean1)) * np.linalg.inv(np.cov(self.x)) * (x_new - self.mean1)) * (self.y1 / len(self.x))
+        if pdf0 > pdf1:
+            return 0
+        else:
+            return 1
