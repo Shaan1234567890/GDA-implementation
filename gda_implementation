@@ -35,8 +35,8 @@ class Gaussian_discriminant_analysis(object):
     def get_means(self):
         return self.means
     def get_prediction(self, x_new):
-        pdf0 = 1/(((2*np.pi)**self.x.ndim/2)*np.sqrt(np.linalg.det(np.cov(self.x)))) * np.exp(-1/2 * np.transpose((x_new - self.mean0)) * np.linalg.inv(np.cov(self.x)) * (x_new - self.mean0)) * (self.y0 / len(self.x))
-        pdf1 = 1/(((2*np.pi)**self.x.ndim/2)*np.sqrt(np.linalg.det(np.cov(sel.x)))) * np.exp(-1/2 * np.transpose((x_new - self.mean1)) * np.linalg.inv(np.cov(self.x)) * (x_new - self.mean1)) * (self.y1 / len(self.x))
+        pdf0 = 1/(((2*np.pi)**len(self.x[0])/2)*np.sqrt(np.linalg.det(np.cov(self.x)))) * np.exp(-1/2 * np.transpose((x_new - self.mean0)) * np.linalg.inv(np.cov(self.x)) * (x_new - self.mean0)) * (self.y0 / len(self.x))
+        pdf1 = 1/(((2*np.pi)**len(self.x[0]))*np.sqrt(np.linalg.det(np.cov(sel.x)))) * np.exp(-1/2 * np.transpose((x_new - self.mean1)) * np.linalg.inv(np.cov(self.x)) * (x_new - self.mean1)) * (self.y1 / len(self.x))
         if pdf0 > pdf1:
             return 0
         else:
